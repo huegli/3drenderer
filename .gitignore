@@ -3,3 +3,4 @@ renderer
 3drenderer/
 x64/
 SDL2.dll
+/.clangd
