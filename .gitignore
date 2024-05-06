@@ -4,3 +4,4 @@ renderer
 x64/
 SDL2.dll
 /.clangd
+/renderer.dSYM
