@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: clang build",
+			"command": "/usr/bin/clang",
+			"args": [
+				"-I/opt/homebrew/include/SDL2",
+				"-L/opt/homebrew/lib",
+				"-Wall",
+				"-std=c99",
+				"-g",
+				"${workspaceFolder}/src/main.c",
+				"-lSDL2",
+				"-o",
+				"${workspaceFolder}/renderer"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: /usr/bin/clang"
+		}
+	]
+}
