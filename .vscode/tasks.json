@@ -11,7 +11,7 @@
 				"-Wall",
 				"-std=c99",
 				"-g",
-				"${workspaceFolder}/src/main.c",
+				"${workspaceFolder}/src/*.c",
 				"-lSDL2",
 				"-o",
 				"${workspaceFolder}/renderer"

@@ -10,7 +10,8 @@
             "name": "Debug",
             "program": "${workspaceFolder}/renderer",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "C/C++: clang build"
         }
     ]
 }
