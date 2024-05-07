@@ -85,14 +85,11 @@ void update(void)
 
 void render(void)
 {
-    // SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    // SDL_RenderClear(renderer);
-
     draw_grid();
 
     for (int i = 0; i < N_POINTS; i++) {
         vec2_t point = projected_points[i];
-        draw_rect(point.x + window_width / 2, point.y + window_height / 2, 4, 4, 0xFFFFFF00);
+        draw_rect(point.x + window_width / 2.0, point.y + window_height / 2.0, 4, 4, 0xFFFFFF00);
     }
 
     render_color_buffer();
@@ -105,8 +102,6 @@ int main(int argc, char* argv[])
 {
 
     is_running = initialize_window();
-
-    vec3_t v = { 0.0f, 0.0f, 0.0f };
 
     setup();
 
