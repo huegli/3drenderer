@@ -31,14 +31,13 @@ bool initialize_window(void)
     }
 
     // Create a SDL Renderer
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC);
     if (!renderer) {
         fprintf(stderr, "Error creating SDL renderer.\n");
         return false;
     }
 
     // SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
-
     return true;
 }
 
