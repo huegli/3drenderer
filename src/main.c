@@ -84,7 +84,7 @@ void render(void)
 
     for (int i = 0; i < N_POINTS; i++) {
         vec2_t point = projected_points[i];
-        draw_rect(point.x + window_width / 2, point.y + window_height / 2, 4, 4, 0xFFFFFF00);
+        draw_rect(point.x + window_width / 2.0, point.y + window_height / 2.0, 4, 4, 0xFFFFFF00);
     }
 
     render_color_buffer();
