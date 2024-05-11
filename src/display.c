@@ -31,7 +31,7 @@ bool initialize_window(void)
     }
 
     // Create a SDL Renderer
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
     if (!renderer) {
         fprintf(stderr, "Error creating SDL renderer.\n");
         return false;

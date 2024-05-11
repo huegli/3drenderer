@@ -16,6 +16,8 @@ float fov_factor = 640;
 
 bool is_running = false;
 
+int previous_frame_time = 0;
+
 void setup(void)
 {
     // allocate the required memory in bytes to hold the color buffer
@@ -70,6 +72,10 @@ vec2_t project(vec3_t point)
 
 void update(void)
 {
+    while (!SDL_TICKS_PASSED(SDL_GetTicks(), previous_frame_time + FRAME_TARGET_TIME));
+    
+    previous_frame_time = SDL_GetTicks();
+
     cube_rotation.x += 0.01;
     cube_rotation.y += 0.01;
     cube_rotation.z += 0.01;
