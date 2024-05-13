@@ -61,7 +61,7 @@ void draw_line(int x0, int y0, int x1, int y1, uint32_t color) {
     int delta_x = x1 - x0;
     int delta_y = y1 - y0;
     
-    int side_length = abs(delta_x) >> abs(delta_y) ? abs(delta_x) : abs(delta_y);
+    int side_length = abs(delta_x) >= abs(delta_y) ? abs(delta_x) : abs(delta_y);
     
     // find out how much we should increment in both x and y each step
     float x_inc = delta_x / (float)side_length;
