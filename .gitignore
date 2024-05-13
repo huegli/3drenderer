@@ -6,3 +6,4 @@ SDL2.dll
 /.clangd
 /renderer.dSYM
 /.DS_Store
+3drenderer.xcodeproj/project.xcworkspace/xcuserdata/
