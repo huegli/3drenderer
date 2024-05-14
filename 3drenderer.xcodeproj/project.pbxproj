@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		912CB13C2BF2D15A00D124C5 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 912CB13B2BF2D15A00D124C5 /* array.c */; };
 		914B9CE02BF298860021E8AB /* libSDL2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 914B9CDF2BF298860021E8AB /* libSDL2.dylib */; };
 		914B9CE12BF298860021E8AB /* libSDL2.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 914B9CDF2BF298860021E8AB /* libSDL2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		914B9CF72BF299E60021E8AB /* display.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CED2BF299B00021E8AB /* display.c */; };
@@ -40,13 +41,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		912CB13A2BF2D15A00D124C5 /* array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
+		912CB13B2BF2D15A00D124C5 /* array.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
 		914B9CCA2BF294740021E8AB /* 3drenderer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 3drenderer; sourceTree = BUILT_PRODUCTS_DIR; };
 		914B9CDF2BF298860021E8AB /* libSDL2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSDL2.dylib; path = ../../../../../../opt/brew/Cellar/sdl2/2.30.3/lib/libSDL2.dylib; sourceTree = "<group>"; };
-		914B9CE32BF2999B0021E8AB /* mesh.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = mesh.c; path = src/mesh.c; sourceTree = "<group>"; };
-		914B9CE42BF2999B0021E8AB /* triangle.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = triangle.c; path = src/triangle.c; sourceTree = "<group>"; };
-		914B9CE52BF2999B0021E8AB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = src/main.c; sourceTree = "<group>"; };
-		914B9CE62BF2999B0021E8AB /* vector.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = vector.c; path = src/vector.c; sourceTree = "<group>"; };
-		914B9CE72BF2999B0021E8AB /* display.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = display.c; path = src/display.c; sourceTree = "<group>"; };
 		914B9CED2BF299B00021E8AB /* display.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = display.c; sourceTree = "<group>"; };
 		914B9CEE2BF299B00021E8AB /* display.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = display.h; sourceTree = "<group>"; };
 		914B9CEF2BF299B00021E8AB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
@@ -74,11 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				914B9CF62BF299B00021E8AB /* src */,
-				914B9CE72BF2999B0021E8AB /* display.c */,
-				914B9CE52BF2999B0021E8AB /* main.c */,
-				914B9CE32BF2999B0021E8AB /* mesh.c */,
-				914B9CE42BF2999B0021E8AB /* triangle.c */,
-				914B9CE62BF2999B0021E8AB /* vector.c */,
 				914B9CCB2BF294740021E8AB /* Products */,
 				914B9CDE2BF298860021E8AB /* Frameworks */,
 			);
@@ -112,6 +105,8 @@
 				914B9CF32BF299B00021E8AB /* triangle.h */,
 				914B9CF42BF299B00021E8AB /* vector.c */,
 				914B9CF52BF299B00021E8AB /* vector.h */,
+				912CB13A2BF2D15A00D124C5 /* array.h */,
+				912CB13B2BF2D15A00D124C5 /* array.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -177,6 +172,7 @@
 				914B9CF72BF299E60021E8AB /* display.c in Sources */,
 				914B9CF82BF299E60021E8AB /* main.c in Sources */,
 				914B9CF92BF299E60021E8AB /* mesh.c in Sources */,
+				912CB13C2BF2D15A00D124C5 /* array.c in Sources */,
 				914B9CFA2BF299E60021E8AB /* triangle.c in Sources */,
 				914B9CFB2BF299E60021E8AB /* vector.c in Sources */,
 			);
