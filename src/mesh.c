@@ -73,55 +73,39 @@ void load_obj_file_data(char *filename) {
         if (token != NULL) {
             
             if (strcmp(token, "v") == 0) {
-                float x, y, z;
+                vec3_t v;
                 
                 token = strtok(NULL, " ");
                 if (token == NULL) return;
-                if (sscanf(token, "%f", &x) != 1) return;
+                if (sscanf(token, "%f", &v.x) != 1) return;
                 
                 token = strtok(NULL, " ");
                 if (token == NULL) return;
-                if (sscanf(token, "%f", &y) != 1) return;
+                if (sscanf(token, "%f", &v.y) != 1) return;
                 
                 token = strtok(NULL, " ");
                 if (token == NULL) return;
-                if (sscanf(token, "%f", &z) != 1) return;
-                
-                vec3_t v = {
-                    x = x,
-                    y = y,
-                    z = z
-                };
+                if (sscanf(token, "%f", &v.z) != 1) return;
                 
                 array_push(mesh.vertices, v);
-                
-                // printf("(%f, %f ,%f)\n", x, y, z);
             }
             
             if (strcmp(token, "f") == 0) {
-                int a, b, c;
-                int dummy1, dummy2;
+                face_t f = {};
+
+                token = strtok(NULL, " ");
+                if (token == NULL) return;
+                if (sscanf(token, "%d/%*d/%*d", &f.a) != 1) return;
                 
                 token = strtok(NULL, " ");
                 if (token == NULL) return;
-                if (sscanf(token, "%d/%d/%d", &a, &dummy1, &dummy2) != 3) return;
+                if (sscanf(token, "%d/%*d/%*d", &f.b) != 1) return;
                 
                 token = strtok(NULL, " ");
                 if (token == NULL) return;
-                if (sscanf(token, "%d/%d/%d", &b, &dummy1, &dummy2) != 3) return;
-                
-                token = strtok(NULL, " ");
-                if (token == NULL) return;
-                if (sscanf(token, "%d/%d/%d", &c, &dummy1, &dummy2) != 3) return;
-                
-                face_t f = {
-                    a = a,
-                    b = b,
-                    c = c
-                };
+                if (sscanf(token, "%d/%*d/%*d", &f.c) != 1) return;
                 
                 array_push(mesh.faces, f);
-                // printf("(%d, %d ,%d)\n", f1, f2, f3);
             }
         }
     }

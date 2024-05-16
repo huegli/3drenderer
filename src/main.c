@@ -71,20 +71,20 @@ void update(void)
     triangles_to_render = NULL;
     
     mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.01;
-    mesh.rotation.z += 0.01;
+    mesh.rotation.y += 0.00;
+    mesh.rotation.z += 0.00;
 
     // loop through all triangle faces of our mesh
     int num_faces = array_length(mesh.faces);
     for (int i = 0; i < num_faces; i++) {
         face_t mesh_face = mesh.faces[i];
-
+        
         vec3_t face_vertices[3];
         face_vertices[0] = mesh.vertices[mesh_face.a - 1];
         face_vertices[1] = mesh.vertices[mesh_face.b - 1];
         face_vertices[2] = mesh.vertices[mesh_face.c - 1];
-
-        triangle_t projected_triangle;
+        
+        triangle_t projected_triangle = {};
 
         // loop all three vertices of this current face and apply the transformation
         for (int j = 0; j < 3; j++) {
