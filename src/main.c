@@ -84,7 +84,7 @@ void update(void)
         face_vertices[1] = mesh.vertices[mesh_face.b - 1];
         face_vertices[2] = mesh.vertices[mesh_face.c - 1];
         
-        triangle_t projected_triangle = {};
+        triangle_t projected_triangle = {0, 0, 0};
 
         // loop all three vertices of this current face and apply the transformation
         for (int j = 0; j < 3; j++) {
