@@ -6,4 +6,12 @@ SDL2.dll
 /.clangd
 /renderer.dSYM
 /.DS_Store
-3drenderer.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
