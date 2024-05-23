@@ -79,12 +79,12 @@ void update(void)
     for (int i = 0; i < num_faces; i++) {
         face_t mesh_face = mesh.faces[i];
         
-        vec3_t face_vertices[3];
+        vec3_t face_vertices[3] = {0, 0, 0};
         face_vertices[0] = mesh.vertices[mesh_face.a - 1];
         face_vertices[1] = mesh.vertices[mesh_face.b - 1];
         face_vertices[2] = mesh.vertices[mesh_face.c - 1];
 
-        vec3_t transformed_vertices[3];
+        vec3_t transformed_vertices[3] = {0, 0, 0};
 
         // loop all three vertices of this current face and apply the transformation
         for (int j = 0; j < 3; j++) {
@@ -114,7 +114,13 @@ void update(void)
         vec3_t vector_ab = vec3_sub(vector_b, vector_a);
         vec3_t vector_ac = vec3_sub(vector_c, vector_a);
 
+        // Compute the normal of the triangle
         vec3_t normal = vec3_cross(vector_ab, vector_ac);
+
+        // Normalize the face normal vector
+        vec3_normalize(&normal);
+
+        // Find the vector between point A and the camera
         vec3_t camera_ray = vec3_sub(camera_position, vector_a);
 
         // bypass the triangles that face away from the camera
