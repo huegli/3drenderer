@@ -13,6 +13,11 @@ int previous_frame_time = 0;
 
 triangle_t* triangles_to_render = NULL;
 
+bool show_wireframe = true;
+bool show_vertices = true;
+bool fill_triangles = false;
+bool do_backface_cul = false;
+
 void setup(void)
 {
     // allocate the required memory in bytes to hold the color buffer
@@ -38,6 +43,30 @@ void process_input(void)
     case SDL_KEYDOWN:
         if (event.key.keysym.sym == SDLK_ESCAPE)
             is_running = false;
+            if (event.key.keysym.sym == SDLK_1) {
+                show_wireframe = true;
+                show_vertices = true;
+                fill_triangles = false;
+            }
+            if (event.key.keysym.sym == SDLK_2) {
+                show_wireframe = true;
+                show_vertices = false;
+                fill_triangles = false;
+            }
+            if (event.key.keysym.sym == SDLK_3) {
+                show_wireframe = false;
+                show_vertices = false;
+                fill_triangles = true;
+            }
+            if (event.key.keysym.sym == SDLK_4) {
+                show_wireframe = true;
+                show_vertices = false;
+                fill_triangles = true;
+            }
+        if (event.key.keysym.sym == SDLK_c)
+            do_backface_cul = true;
+        if (event.key.keysym.sym == SDLK_d)
+            do_backface_cul = false;
         break;
     }
 }
@@ -125,7 +154,8 @@ void update(void)
 
         // bypass the triangles that face away from the camera
         if (vec3_dot(normal, camera_ray) < 0) {
-            continue;
+            // only bypass if backface culling enabled
+            if (do_backface_cul) continue;
         }
        
         triangle_t projected_triangle = {0, 0, 0};
@@ -156,18 +186,20 @@ void render(void)
     for (int i = 0; i < num_triangles; i++) {
         triangle_t triangle = triangles_to_render[i];
         
-        draw_rect(triangle.points[0].x, triangle.points[0].y, 3, 3, 0xFFFFFF00);
-        draw_rect(triangle.points[1].x, triangle.points[1].y, 3, 3, 0xFFFFFF00);
-        draw_rect(triangle.points[2].x, triangle.points[2].y, 3, 3, 0xFFFFFF00);
+        if (show_vertices) {
+            draw_rect(triangle.points[0].x, triangle.points[0].y, 3, 3, 0xFFFF0000);
+            draw_rect(triangle.points[1].x, triangle.points[1].y, 3, 3, 0xFFFF0000);
+            draw_rect(triangle.points[2].x, triangle.points[2].y, 3, 3, 0xFFFF0000);
+        }
         
-        draw_filled_triangle(
+        if (fill_triangles) draw_filled_triangle(
             triangle.points[0].x, triangle.points[0].y,
             triangle.points[1].x, triangle.points[1].y,
-            triangle.points[2].x, triangle.points[2].y, 0xFFFFFFFF);
-        draw_triangle(
+            triangle.points[2].x, triangle.points[2].y, 0xFF0000FF);
+        if (show_wireframe) draw_triangle(
             triangle.points[0].x, triangle.points[0].y,
             triangle.points[1].x, triangle.points[1].y,
-            triangle.points[2].x, triangle.points[2].y, 0xFF000000);
+            triangle.points[2].x, triangle.points[2].y, 0xFF00FF00);
     
     }
     
