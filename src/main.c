@@ -14,9 +14,9 @@ int previous_frame_time = 0;
 triangle_t* triangles_to_render = NULL;
 
 bool show_wireframe = true;
-bool show_vertices = true;
+bool show_vertices = false;
 bool fill_triangles = false;
-bool do_backface_cul = false;
+bool do_backface_cul = true;
 
 void setup(void)
 {
@@ -28,7 +28,8 @@ void setup(void)
         SDL_TEXTUREACCESS_STREAMING,
         window_width, window_height);
 
-    load_obj_file_data("./assets/f22.obj");
+    // load_obj_file_data("./assets/f22.obj");
+    load_cube_mesh_data();
 }
 
 void process_input(void)
@@ -98,7 +99,7 @@ void update(void)
     previous_frame_time = SDL_GetTicks();
 
     triangles_to_render = NULL;
-    
+
     mesh.rotation.x += 0.01;
     mesh.rotation.y += 0.01;
     mesh.rotation.z += 0.01;
@@ -107,13 +108,13 @@ void update(void)
     int num_faces = array_length(mesh.faces);
     for (int i = 0; i < num_faces; i++) {
         face_t mesh_face = mesh.faces[i];
-        
-        vec3_t face_vertices[3] = {0, 0, 0};
+
+        vec3_t face_vertices[3] = {};
         face_vertices[0] = mesh.vertices[mesh_face.a - 1];
         face_vertices[1] = mesh.vertices[mesh_face.b - 1];
         face_vertices[2] = mesh.vertices[mesh_face.c - 1];
 
-        vec3_t transformed_vertices[3] = {0, 0, 0};
+        vec3_t transformed_vertices[3] = {};
 
         // loop all three vertices of this current face and apply the transformation
         for (int j = 0; j < 3; j++) {
@@ -157,20 +158,29 @@ void update(void)
             // only bypass if backface culling enabled
             if (do_backface_cul) continue;
         }
-       
-        triangle_t projected_triangle = {0, 0, 0};
 
+        vec2_t projected_points[3] = {};
+        
         // Loop all three vertices to perform the projection
         for (int j = 0; j < 3; j++) {
             // Project the current point
-            vec2_t projected_point = project(transformed_vertices[j]);
+            projected_points[j] = project(transformed_vertices[j]);
 
             // scale and translate the projected point to the center of the screen
-            projected_point.x += (window_width / 2.0);
-            projected_point.y += (window_height / 2.0);
+            projected_points[j].x += (window_width / 2.0);
+            projected_points[j].y += (window_height / 2.0);
 
-            projected_triangle.points[j] = projected_point;
         }
+        
+        triangle_t projected_triangle = {
+            .points = {
+                { projected_points[0].x, projected_points[0].y },
+                { projected_points[1].x, projected_points[1].y },
+                { projected_points[2].x, projected_points[2].y },
+            },
+            .color = mesh_face.color
+        };
+
 
         // Save the projected triangle in the array of triangles to render
         array_push(triangles_to_render, projected_triangle);
@@ -195,18 +205,19 @@ void render(void)
         if (fill_triangles) draw_filled_triangle(
             triangle.points[0].x, triangle.points[0].y,
             triangle.points[1].x, triangle.points[1].y,
-            triangle.points[2].x, triangle.points[2].y, 0xFF0000FF);
+            triangle.points[2].x, triangle.points[2].y, triangle.color);
         if (show_wireframe) draw_triangle(
             triangle.points[0].x, triangle.points[0].y,
             triangle.points[1].x, triangle.points[1].y,
             triangle.points[2].x, triangle.points[2].y, 0xFF00FF00);
     
+
     }
-    
+
     array_free(triangles_to_render);
 
     render_color_buffer();
-    
+
     clear_color_buffer(0xFF000000);
 
     SDL_RenderPresent(renderer);
