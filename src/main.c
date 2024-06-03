@@ -18,6 +18,17 @@ bool show_vertices = false;
 bool fill_triangles = false;
 bool do_backface_cul = true;
 
+// Sorting triangle helper function
+int comp(const void *elem1, const void *elem2) {
+    triangle_t t1 = *((triangle_t*)elem1);
+    triangle_t t2 = *((triangle_t*)elem2);
+    
+    if (t1.avg_depth < t2.avg_depth)
+        return 1;
+    else
+        return -1;
+}
+
 void setup(void)
 {
     // allocate the required memory in bytes to hold the color buffer
@@ -172,20 +183,26 @@ void update(void)
 
         }
         
+        // Calculate the average depth for each face based on the vectices after tranformation
+        float avg_depth = (transformed_vertices[0].z + transformed_vertices[1].z + transformed_vertices[2].z) / 3.0;
+        
         triangle_t projected_triangle = {
             .points = {
                 { projected_points[0].x, projected_points[0].y },
                 { projected_points[1].x, projected_points[1].y },
                 { projected_points[2].x, projected_points[2].y },
             },
-            .color = mesh_face.color
+            .color = mesh_face.color,
+            .avg_depth = avg_depth
         };
-
 
         // Save the projected triangle in the array of triangles to render
         array_push(triangles_to_render, projected_triangle);
 
     }
+    
+    // Sort the triangles to render by their avg depth
+    qsort(triangles_to_render, array_length(triangles_to_render), sizeof(triangle_t), comp);
 }
 
 void render(void)
