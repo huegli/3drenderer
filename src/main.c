@@ -55,26 +55,26 @@ void process_input(void)
     case SDL_KEYDOWN:
         if (event.key.keysym.sym == SDLK_ESCAPE)
             is_running = false;
-            if (event.key.keysym.sym == SDLK_1) {
-                show_wireframe = true;
-                show_vertices = true;
-                fill_triangles = false;
-            }
-            if (event.key.keysym.sym == SDLK_2) {
-                show_wireframe = true;
-                show_vertices = false;
-                fill_triangles = false;
-            }
-            if (event.key.keysym.sym == SDLK_3) {
-                show_wireframe = false;
-                show_vertices = false;
-                fill_triangles = true;
-            }
-            if (event.key.keysym.sym == SDLK_4) {
-                show_wireframe = true;
-                show_vertices = false;
-                fill_triangles = true;
-            }
+        if (event.key.keysym.sym == SDLK_1) {
+            show_wireframe = true;
+            show_vertices = true;
+            fill_triangles = false;
+        }
+        if (event.key.keysym.sym == SDLK_2) {
+            show_wireframe = true;
+            show_vertices = false;
+            fill_triangles = false;
+        }
+        if (event.key.keysym.sym == SDLK_3) {
+            show_wireframe = false;
+            show_vertices = false;
+            fill_triangles = true;
+        }
+        if (event.key.keysym.sym == SDLK_4) {
+            show_wireframe = true;
+            show_vertices = false;
+            fill_triangles = true;
+        }
         if (event.key.keysym.sym == SDLK_c)
             do_backface_cul = true;
         if (event.key.keysym.sym == SDLK_d)
@@ -111,21 +111,21 @@ void update(void)
 
     triangles_to_render = NULL;
 
-    mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.01;
-    mesh.rotation.z += 0.01;
+    mesh.rotation.x += (float)0.01;
+    mesh.rotation.y += (float)0.01;
+    mesh.rotation.z += (float)0.01;
 
     // loop through all triangle faces of our mesh
     int num_faces = array_length(mesh.faces);
     for (int i = 0; i < num_faces; i++) {
         face_t mesh_face = mesh.faces[i];
 
-        vec3_t face_vertices[3] = {};
+        vec3_t face_vertices[3] = {0};
         face_vertices[0] = mesh.vertices[mesh_face.a - 1];
         face_vertices[1] = mesh.vertices[mesh_face.b - 1];
         face_vertices[2] = mesh.vertices[mesh_face.c - 1];
 
-        vec3_t transformed_vertices[3] = {};
+        vec3_t transformed_vertices[3] = {0};
 
         // loop all three vertices of this current face and apply the transformation
         for (int j = 0; j < 3; j++) {
@@ -170,7 +170,7 @@ void update(void)
             if (do_backface_cul) continue;
         }
 
-        vec2_t projected_points[3] = {};
+        vec2_t projected_points[3] = {0};
         
         // Loop all three vertices to perform the projection
         for (int j = 0; j < 3; j++) {
@@ -178,14 +178,14 @@ void update(void)
             projected_points[j] = project(transformed_vertices[j]);
 
             // scale and translate the projected point to the center of the screen
-            projected_points[j].x += (window_width / 2.0);
-            projected_points[j].y += (window_height / 2.0);
+            projected_points[j].x += ((float)window_width / 2.0f);
+            projected_points[j].y += ((float)window_height / 2.0f);
 
         }
         
         // Calculate the average depth for each face based on the vectices after tranformation
         float avg_depth = (transformed_vertices[0].z + transformed_vertices[1].z + transformed_vertices[2].z) / 3.0;
-        
+
         triangle_t projected_triangle = {
             .points = {
                 { projected_points[0].x, projected_points[0].y },
@@ -212,21 +212,21 @@ void render(void)
     int num_triangles = array_length(triangles_to_render);
     for (int i = 0; i < num_triangles; i++) {
         triangle_t triangle = triangles_to_render[i];
-        
+
         if (show_vertices) {
-            draw_rect(triangle.points[0].x, triangle.points[0].y, 3, 3, 0xFFFF0000);
-            draw_rect(triangle.points[1].x, triangle.points[1].y, 3, 3, 0xFFFF0000);
-            draw_rect(triangle.points[2].x, triangle.points[2].y, 3, 3, 0xFFFF0000);
+            draw_rect((int)triangle.points[0].x, (int)triangle.points[0].y, 3, 3, 0xFFFF0000);
+            draw_rect((int)triangle.points[1].x, (int)triangle.points[1].y, 3, 3, 0xFFFF0000);
+            draw_rect((int)triangle.points[2].x, (int)triangle.points[2].y, 3, 3, 0xFFFF0000);
         }
-        
+
         if (fill_triangles) draw_filled_triangle(
-            triangle.points[0].x, triangle.points[0].y,
-            triangle.points[1].x, triangle.points[1].y,
-            triangle.points[2].x, triangle.points[2].y, triangle.color);
+            (int)triangle.points[0].x, (int)triangle.points[0].y,
+            (int)triangle.points[1].x, (int)triangle.points[1].y,
+            (int)triangle.points[2].x, (int)triangle.points[2].y, triangle.color);
         if (show_wireframe) draw_triangle(
-            triangle.points[0].x, triangle.points[0].y,
-            triangle.points[1].x, triangle.points[1].y,
-            triangle.points[2].x, triangle.points[2].y, 0xFF00FF00);
+            (int)triangle.points[0].x, (int)triangle.points[0].y,
+            (int)triangle.points[1].x, (int)triangle.points[1].y,
+            (int)triangle.points[2].x, (int)triangle.points[2].y, 0xFF00FF00);
     
 
     }
