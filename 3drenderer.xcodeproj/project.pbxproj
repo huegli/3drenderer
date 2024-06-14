@@ -15,6 +15,7 @@
 		914B9CF92BF299E60021E8AB /* mesh.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CF02BF299B00021E8AB /* mesh.c */; };
 		914B9CFA2BF299E60021E8AB /* triangle.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CF22BF299B00021E8AB /* triangle.c */; };
 		914B9CFB2BF299E60021E8AB /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CF42BF299B00021E8AB /* vector.c */; };
+		91C9C6652C1A18B9000756F1 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 91C9C6642C1A18B9000756F1 /* matrix.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +55,8 @@
 		914B9CF32BF299B00021E8AB /* triangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = triangle.h; sourceTree = "<group>"; };
 		914B9CF42BF299B00021E8AB /* vector.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = vector.c; sourceTree = "<group>"; };
 		914B9CF52BF299B00021E8AB /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		91C9C6632C1A18B9000756F1 /* matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		91C9C6642C1A18B9000756F1 /* matrix.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 				914B9CF52BF299B00021E8AB /* vector.h */,
 				912CB13A2BF2D15A00D124C5 /* array.h */,
 				912CB13B2BF2D15A00D124C5 /* array.c */,
+				91C9C6632C1A18B9000756F1 /* matrix.h */,
+				91C9C6642C1A18B9000756F1 /* matrix.c */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				914B9CF72BF299E60021E8AB /* display.c in Sources */,
+				91C9C6652C1A18B9000756F1 /* matrix.c in Sources */,
 				914B9CF82BF299E60021E8AB /* main.c in Sources */,
 				914B9CF92BF299E60021E8AB /* mesh.c in Sources */,
 				912CB13C2BF2D15A00D124C5 /* array.c in Sources */,
