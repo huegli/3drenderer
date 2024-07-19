@@ -5,8 +5,7 @@
 #include "matrix.h"
 
 vec3_t camera_position = { 0, 0, 0 };
-
-float fov_factor = 640;
+mat4_t proj_matrix;
 
 bool is_running = false;
 
@@ -40,6 +39,13 @@ void setup(void)
         SDL_TEXTUREACCESS_STREAMING,
         window_width, window_height);
 
+    // Initialize the perspective projection matrix
+    float fov = M_PI / 3.0; // the same as 180/3 or 60 degrees
+    float aspect = (float)window_height / (float)window_width;
+    float znear = 0.1;
+    float zfar = 100.0;
+    proj_matrix = mat4_make_perspective(fov, aspect, znear, zfar);
+    
     // load_obj_file_data("./assets/f22.obj");
     load_cube_mesh_data();
 }
@@ -84,19 +90,6 @@ void process_input(void)
     }
 }
 
-////////////////////////////////////////////////////////////////////////
-// Function that receives a 3D vector and returns a projected 2D point
-////////////////////////////////////////////////////////////////////////
-vec2_t project(vec3_t point)
-{
-    vec2_t projected_point = {
-        .x = (point.x * fov_factor) / point.z,
-        .y = (point.y * fov_factor) / point.z
-    };
-
-    return projected_point;
-}
-
 void update(void)
 {
 
@@ -114,13 +107,10 @@ void update(void)
 
     // scale/rotate the mesh per animation frame
     mesh.rotation.x += (float)0.01;
-    mesh.rotation.y += (float)0.01;
-    mesh.rotation.z += (float)0.01;
-    mesh.scale.x += (float)0.002;
-    mesh.scale.y += (float)0.001;
-    mesh.translation.x += (float)0.01;
+//    mesh.rotation.z += (float)0.01;
+//    mesh.rotation.y += (float)0.01;
     // Translate the points away from the camera
-    mesh.translation.z = 5;
+    mesh.translation.z = 5.0;
     
     // create a scale matrix that will be used to multiply the mesh vertices
     mat4_t scale_matrix = mat4_make_scale(mesh.scale.x, mesh.scale.y, mesh.scale.z);
@@ -145,12 +135,17 @@ void update(void)
         for (int j = 0; j < 3; j++) {
             vec4_t transformed_vertex = vec4_from_vec3(face_vertices[j]);
 
-            transformed_vertex = mat4_mul_vec4(scale_matrix, transformed_vertex);
-            transformed_vertex = mat4_mul_vec4(rotation_matrix_x, transformed_vertex);
-            transformed_vertex = mat4_mul_vec4(rotation_matrix_y, transformed_vertex);
-            transformed_vertex = mat4_mul_vec4(rotation_matrix_z, transformed_vertex);
-            transformed_vertex = mat4_mul_vec4(translation_matrix, transformed_vertex);
+            // Create a World Matrix combining scale, rotation and translation matrices
+            mat4_t world_matrix = mat4_identity();
+            world_matrix = mat4_mul_mat4(scale_matrix, world_matrix);
+            world_matrix = mat4_mul_mat4(rotation_matrix_z, world_matrix);
+            world_matrix = mat4_mul_mat4(rotation_matrix_y, world_matrix);
+            world_matrix = mat4_mul_mat4(rotation_matrix_x, world_matrix);
+            world_matrix = mat4_mul_mat4(translation_matrix, world_matrix);
 
+            // Multiply the world matrix by the original vector
+            transformed_vertex = mat4_mul_vec4(world_matrix, transformed_vertex);
+            
             // Save the transformed vertex in the array of transformed vertices
             transformed_vertices[j] = transformed_vertex;
         }
@@ -178,16 +173,20 @@ void update(void)
             if (do_backface_cul) continue;
         }
 
-        vec2_t projected_points[3] = {0};
+        vec4_t projected_points[3] = {0};
         
         // Loop all three vertices to perform the projection
         for (int j = 0; j < 3; j++) {
             // Project the current point
-            projected_points[j] = project(vec3_from_vec4(transformed_vertices[j]));
+            projected_points[j] = mat4_mul_vec4_project(proj_matrix, transformed_vertices[j]);
 
-            // scale and translate the projected point to the center of the screen
-            projected_points[j].x += ((float)window_width / 2.0f);
-            projected_points[j].y += ((float)window_height / 2.0f);
+            // Scale into the view
+            projected_points[j].x *= (window_width / 2.0);
+            projected_points[j].y *= (window_height / 2.0);
+            
+            // translate the projected point to the center of the screen
+            projected_points[j].x += ((float)window_width / 2.0);
+            projected_points[j].y += ((float)window_height / 2.0);
 
         }
         

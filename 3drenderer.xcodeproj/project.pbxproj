@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		912CB13C2BF2D15A00D124C5 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 912CB13B2BF2D15A00D124C5 /* array.c */; };
-		91302F442C37485F00FA98E7 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91302F412C37484400FA98E7 /* libSDL2-2.0.0.dylib */; };
-		91302F452C37485F00FA98E7 /* libSDL2-2.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 91302F412C37484400FA98E7 /* libSDL2-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		913222342C4AD51300334749 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 913222312C4AD4E900334749 /* libSDL2-2.0.0.dylib */; };
+		913222352C4AD51300334749 /* libSDL2-2.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 913222312C4AD4E900334749 /* libSDL2-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		914B9CF72BF299E60021E8AB /* display.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CED2BF299B00021E8AB /* display.c */; };
 		914B9CF82BF299E60021E8AB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CEF2BF299B00021E8AB /* main.c */; };
 		914B9CF92BF299E60021E8AB /* mesh.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CF02BF299B00021E8AB /* mesh.c */; };
@@ -19,13 +19,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		91302F462C37485F00FA98E7 /* Embed Libraries */ = {
+		913222362C4AD51300334749 /* Embed Libraries */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				91302F452C37485F00FA98E7 /* libSDL2-2.0.0.dylib in Embed Libraries */,
+				913222352C4AD51300334749 /* libSDL2-2.0.0.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +45,7 @@
 		912CB13A2BF2D15A00D124C5 /* array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
 		912CB13B2BF2D15A00D124C5 /* array.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
 		91302F412C37484400FA98E7 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../opt/brew/Cellar/sdl2/2.30.4/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
+		913222312C4AD4E900334749 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../opt/brew/Cellar/sdl2/2.30.5/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		914B9CCA2BF294740021E8AB /* 3drenderer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 3drenderer; sourceTree = BUILT_PRODUCTS_DIR; };
 		914B9CDF2BF298860021E8AB /* libSDL2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSDL2.dylib; path = ../../../../../../opt/brew/Cellar/sdl2/2.30.3/lib/libSDL2.dylib; sourceTree = "<group>"; };
 		914B9CED2BF299B00021E8AB /* display.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = display.c; sourceTree = "<group>"; };
@@ -65,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91302F442C37485F00FA98E7 /* libSDL2-2.0.0.dylib in Frameworks */,
+				913222342C4AD51300334749 /* libSDL2-2.0.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				91302F412C37484400FA98E7 /* libSDL2-2.0.0.dylib */,
+				913222312C4AD4E900334749 /* libSDL2-2.0.0.dylib */,
 				914B9CDF2BF298860021E8AB /* libSDL2.dylib */,
 			);
 			name = Frameworks;
@@ -128,7 +130,7 @@
 				914B9CC62BF294740021E8AB /* Sources */,
 				914B9CC72BF294740021E8AB /* Frameworks */,
 				914B9CC82BF294740021E8AB /* CopyFiles */,
-				91302F462C37485F00FA98E7 /* Embed Libraries */,
+				913222362C4AD51300334749 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -317,6 +319,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/brew/Cellar/sdl2/2.30.4/lib,
+					/opt/brew/Cellar/sdl2/2.30.5/lib,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = /opt/brew/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -332,6 +335,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/brew/Cellar/sdl2/2.30.4/lib,
+					/opt/brew/Cellar/sdl2/2.30.5/lib,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = /opt/brew/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
