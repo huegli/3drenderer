@@ -15,6 +15,7 @@ extern int window_width;
 extern int window_height;
 
 bool initialize_window(void);
+uint32_t light_apply_intensity(uint32_t original_color, float percentage_factor);
 void draw_grid(void);
 void draw_line(int x0, int y0, int x1, int y1, uint32_t color);
 void draw_triangle(int x0, int y0, int x1, int y1, int x2, int y2, uint32_t color);

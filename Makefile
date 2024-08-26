@@ -1,5 +1,8 @@
+INC = $(shell sdl2-config --cflags)
+LIBS = $(shell sdl2-config --libs)
+
 build:
-	clang -I/opt/homebrew/include/SDL2 -L/opt/homebrew/lib -Wall -g -std=c99 ./src/*.c -o renderer -lSDL2
+	clang $(INC) $(LIBS) -Wall -g -std=c99 ./src/*.c -o renderer
 
 run:
 	./renderer

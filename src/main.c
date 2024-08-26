@@ -5,6 +5,8 @@
 #include "matrix.h"
 
 vec3_t camera_position = { 0, 0, 0 };
+vec3_t light_position = { 1, 1 , -1 };
+
 mat4_t proj_matrix;
 
 bool is_running = false;
@@ -107,8 +109,8 @@ void update(void)
 
     // scale/rotate the mesh per animation frame
     mesh.rotation.x += (float)0.01;
-//    mesh.rotation.z += (float)0.01;
-//    mesh.rotation.y += (float)0.01;
+    mesh.rotation.z += (float)0.01;
+    mesh.rotation.y += (float)0.01;
     // Translate the points away from the camera
     mesh.translation.z = 5.0;
     
@@ -173,6 +175,16 @@ void update(void)
             if (do_backface_cul) continue;
         }
 
+        // Find the vector between Point A and the light
+	    vec3_t light_ray = vec3_sub(light_position, vector_a);
+
+        // shade triangle
+	    float shade_normal = vec3_dot(normal, light_ray);
+	    uint32_t shaded_color = 0;
+	    if (shade_normal > 0) {
+		    shaded_color = light_apply_intensity(mesh_face.color, shade_normal);
+		}
+
         vec4_t projected_points[3] = {0};
         
         // Loop all three vertices to perform the projection
@@ -199,7 +211,7 @@ void update(void)
                 { projected_points[1].x, projected_points[1].y },
                 { projected_points[2].x, projected_points[2].y },
             },
-            .color = mesh_face.color,
+            .color = shaded_color,
             .avg_depth = avg_depth
         };
 
