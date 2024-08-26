@@ -2,10 +2,10 @@
 #include "display.h"
 #include "vector.h"
 #include "mesh.h"
+#include "light.h"
 #include "matrix.h"
 
 vec3_t camera_position = { 0, 0, 0 };
-vec3_t light_position = { 1, 1 , -1 };
 
 mat4_t proj_matrix;
 
@@ -48,8 +48,8 @@ void setup(void)
     float zfar = 100.0;
     proj_matrix = mat4_make_perspective(fov, aspect, znear, zfar);
     
-    // load_obj_file_data("./assets/f22.obj");
-    load_cube_mesh_data();
+    load_obj_file_data("./assets/f22.obj");
+    // load_cube_mesh_data();
 }
 
 void process_input(void)
@@ -169,22 +169,16 @@ void update(void)
         // Find the vector between point A and the camera
         vec3_t camera_ray = vec3_sub(camera_position, vector_a);
 
-        // bypass the triangles that face away from the camera
-        if (vec3_dot(normal, camera_ray) < 0) {
-            // only bypass if backface culling enabled
-            if (do_backface_cul) continue;
-        }
+	// Calculate how aligned the camper ray is with the face normal
+	float dot_normal_camera = vec3_dot(normal, camera_ray);
 
-        // Find the vector between Point A and the light
-	    vec3_t light_ray = vec3_sub(light_position, vector_a);
-
-        // shade triangle
-	    float shade_normal = vec3_dot(normal, light_ray);
-	    uint32_t shaded_color = 0;
-	    if (shade_normal > 0) {
-		    shaded_color = light_apply_intensity(mesh_face.color, shade_normal);
-		}
-
+	if (do_backface_cul) {
+	    // bypass the triangles that face away from the camera
+	    if (dot_normal_camera < 0) {
+		continue;
+	    }
+	}
+	
         vec4_t projected_points[3] = {0};
         
         // Loop all three vertices to perform the projection
@@ -205,13 +199,19 @@ void update(void)
         // Calculate the average depth for each face based on the vectices after tranformation
         float avg_depth = (transformed_vertices[0].z + transformed_vertices[1].z + transformed_vertices[2].z) / 3.0;
 
+	// calculate the triangle color based on the light angle
+	float light_intensity_factor = -vec3_dot(normal, light.direction);
+	
+	// Calculate the shade intensity
+	uint32_t triangle_color = light_apply_intensity(mesh_face.color, light_intensity_factor);
+	
         triangle_t projected_triangle = {
             .points = {
                 { projected_points[0].x, projected_points[0].y },
                 { projected_points[1].x, projected_points[1].y },
                 { projected_points[2].x, projected_points[2].y },
             },
-            .color = shaded_color,
+            .color = triangle_color,
             .avg_depth = avg_depth
         };
 
