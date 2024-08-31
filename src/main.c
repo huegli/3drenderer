@@ -15,9 +15,9 @@ int previous_frame_time = 0;
 
 triangle_t* triangles_to_render = NULL;
 
-bool show_wireframe = true;
+bool show_wireframe = false;
 bool show_vertices = false;
-bool fill_triangles = false;
+bool fill_triangles = true;
 bool do_backface_cul = true;
 
 // Sorting triangle helper function
@@ -189,6 +189,9 @@ void update(void)
             // Scale into the view
             projected_points[j].x *= (window_width / 2.0);
             projected_points[j].y *= (window_height / 2.0);
+
+            // Invert the y values to accoutn for flipped screen y coordinate
+            projected_points[j].y *= -1;
             
             // translate the projected point to the center of the screen
             projected_points[j].x += ((float)window_width / 2.0);
