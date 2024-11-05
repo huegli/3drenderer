@@ -8,28 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		912CB13C2BF2D15A00D124C5 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 912CB13B2BF2D15A00D124C5 /* array.c */; };
-		913222342C4AD51300334749 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 913222312C4AD4E900334749 /* libSDL2-2.0.0.dylib */; };
-		913222352C4AD51300334749 /* libSDL2-2.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 913222312C4AD4E900334749 /* libSDL2-2.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		914B9CF72BF299E60021E8AB /* display.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CED2BF299B00021E8AB /* display.c */; };
 		914B9CF82BF299E60021E8AB /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CEF2BF299B00021E8AB /* main.c */; };
 		914B9CF92BF299E60021E8AB /* mesh.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CF02BF299B00021E8AB /* mesh.c */; };
 		914B9CFA2BF299E60021E8AB /* triangle.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CF22BF299B00021E8AB /* triangle.c */; };
 		914B9CFB2BF299E60021E8AB /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = 914B9CF42BF299B00021E8AB /* vector.c */; };
+		9178B7792CDAB06C005A31DE /* light.c in Sources */ = {isa = PBXBuildFile; fileRef = 9178B7782CDAB06C005A31DE /* light.c */; };
+		9178B77B2CDAB59A005A31DE /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9178B77A2CDAB59A005A31DE /* SDL2.framework */; };
+		9178B77C2CDAB59A005A31DE /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9178B77A2CDAB59A005A31DE /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91C9C6652C1A18B9000756F1 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 91C9C6642C1A18B9000756F1 /* matrix.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		913222362C4AD51300334749 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				913222352C4AD51300334749 /* libSDL2-2.0.0.dylib in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		914B9CC82BF294740021E8AB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -39,15 +29,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		9178B7762CDAAE22005A31DE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9178B77C2CDAB59A005A31DE /* SDL2.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		912CB13A2BF2D15A00D124C5 /* array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
 		912CB13B2BF2D15A00D124C5 /* array.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
-		91302F412C37484400FA98E7 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../opt/brew/Cellar/sdl2/2.30.4/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
-		913222312C4AD4E900334749 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../opt/brew/Cellar/sdl2/2.30.5/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		914B9CCA2BF294740021E8AB /* 3drenderer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 3drenderer; sourceTree = BUILT_PRODUCTS_DIR; };
-		914B9CDF2BF298860021E8AB /* libSDL2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSDL2.dylib; path = ../../../../../../opt/brew/Cellar/sdl2/2.30.3/lib/libSDL2.dylib; sourceTree = "<group>"; };
 		914B9CED2BF299B00021E8AB /* display.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = display.c; sourceTree = "<group>"; };
 		914B9CEE2BF299B00021E8AB /* display.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = display.h; sourceTree = "<group>"; };
 		914B9CEF2BF299B00021E8AB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
@@ -57,6 +55,9 @@
 		914B9CF32BF299B00021E8AB /* triangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = triangle.h; sourceTree = "<group>"; };
 		914B9CF42BF299B00021E8AB /* vector.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = vector.c; sourceTree = "<group>"; };
 		914B9CF52BF299B00021E8AB /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		9178B7772CDAB06C005A31DE /* light.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = light.h; sourceTree = "<group>"; };
+		9178B7782CDAB06C005A31DE /* light.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = light.c; sourceTree = "<group>"; };
+		9178B77A2CDAB59A005A31DE /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		91C9C6632C1A18B9000756F1 /* matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
 		91C9C6642C1A18B9000756F1 /* matrix.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				913222342C4AD51300334749 /* libSDL2-2.0.0.dylib in Frameworks */,
+				9178B77B2CDAB59A005A31DE /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,9 +94,7 @@
 		914B9CDE2BF298860021E8AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91302F412C37484400FA98E7 /* libSDL2-2.0.0.dylib */,
-				913222312C4AD4E900334749 /* libSDL2-2.0.0.dylib */,
-				914B9CDF2BF298860021E8AB /* libSDL2.dylib */,
+				9178B77A2CDAB59A005A31DE /* SDL2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -103,6 +102,8 @@
 		914B9CF62BF299B00021E8AB /* src */ = {
 			isa = PBXGroup;
 			children = (
+				9178B7772CDAB06C005A31DE /* light.h */,
+				9178B7782CDAB06C005A31DE /* light.c */,
 				914B9CED2BF299B00021E8AB /* display.c */,
 				914B9CEE2BF299B00021E8AB /* display.h */,
 				914B9CEF2BF299B00021E8AB /* main.c */,
@@ -130,7 +131,7 @@
 				914B9CC62BF294740021E8AB /* Sources */,
 				914B9CC72BF294740021E8AB /* Frameworks */,
 				914B9CC82BF294740021E8AB /* CopyFiles */,
-				913222362C4AD51300334749 /* Embed Libraries */,
+				9178B7762CDAAE22005A31DE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9178B7792CDAB06C005A31DE /* light.c in Sources */,
 				914B9CF72BF299E60021E8AB /* display.c in Sources */,
 				91C9C6652C1A18B9000756F1 /* matrix.c in Sources */,
 				914B9CF82BF299E60021E8AB /* main.c in Sources */,
@@ -224,7 +226,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -246,7 +248,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -287,7 +289,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -303,7 +305,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -315,13 +317,15 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = /opt/brew/include/SDL2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/opt/brew/Cellar/sdl2/2.30.4/lib,
-					/opt/brew/Cellar/sdl2/2.30.5/lib,
+					"$(PROJECT_DIR)/SDL2.framework/Versions/A",
 				);
-				"LIBRARY_SEARCH_PATHS[arch=*]" = /opt/brew/lib;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -331,13 +335,15 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				"HEADER_SEARCH_PATHS[arch=*]" = /opt/brew/include/SDL2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/opt/brew/Cellar/sdl2/2.30.4/lib,
-					/opt/brew/Cellar/sdl2/2.30.5/lib,
+					"$(PROJECT_DIR)/SDL2.framework/Versions/A",
 				);
-				"LIBRARY_SEARCH_PATHS[arch=*]" = /opt/brew/lib;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

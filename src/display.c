@@ -23,8 +23,8 @@ bool initialize_window(void)
     window_height = display_mode.h;
 
     // Create a SDL Window
-    window = SDL_CreateWindow(NULL, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        window_width, window_height, SDL_WINDOW_BORDERLESS);
+    window = SDL_CreateWindow(NULL, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+        window_width, window_height, SDL_WINDOW_RESIZABLE);
     if (!window) {
         fprintf(stderr, "Error creating SDL Window.\n");
         return false;
